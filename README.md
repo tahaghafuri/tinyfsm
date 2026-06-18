@@ -1,15 +1,15 @@
-# tinyfsm
+# @tahaghafuri/tinyfsm
 
 > A tiny (~700B) zero-dependency finite state machine for JavaScript & TypeScript.
 
-[![npm](https://img.shields.io/npm/v/tinyfsm)](https://npmjs.com/package/tinyfsm)
-[![size](https://img.shields.io/bundlephobia/minzip/tinyfsm)](https://bundlephobia.com/package/tinyfsm)
-[![license](https://img.shields.io/npm/l/tinyfsm)](LICENSE)
+[![npm](https://img.shields.io/npm/v/@tahaghafuri/tinyfsm)](https://npmjs.com/package/@tahaghafuri/tinyfsm)
+[![size](https://img.shields.io/bundlephobia/minzip/@tahaghafuri/tinyfsm)](https://bundlephobia.com/package/@tahaghafuri/tinyfsm)
+[![license](https://img.shields.io/npm/l/@tahaghafuri/tinyfsm)](LICENSE)
 
 No boilerplate. No classes. No runtime overhead. Just states and events.
 
 ```js
-import { createMachine } from 'tinyfsm';
+import { createMachine } from '@tahaghafuri/tinyfsm';
 
 const fetcher = createMachine({
   initial: 'idle',
@@ -29,12 +29,12 @@ fetcher.is('success');     // true
 ## Install
 
 ```bash
-npm install tinyfsm
+npm install @tahaghafuri/tinyfsm
 ```
 
 **CDN:**
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tinyfsm/dist/tinyfsm.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tahaghafuri/tinyfsm/dist/tinyfsm.umd.min.js"></script>
 ```
 
 ## API
@@ -78,7 +78,7 @@ const door = createMachine({
 
 ## Why not XState?
 
-XState is excellent for complex machines. tinyfsm is for the other 90% — loading states, UI toggles, wizard steps — where you just need something that works in **under 1KB**.
+XState is excellent for complex machines. `@tahaghafuri/tinyfsm` is for the other 90% — loading states, UI toggles, wizard steps — where you just need something that works in **under 1KB**.
 
 ## License
 

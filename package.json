@@ -1,6 +1,6 @@
 {
-  "name": "tinyfsm",
-  "version": "1.0.0",
+  "name": "@tahaghafuri/tinyfsm",
+  "version": "1.1.0",
   "description": "A tiny (~600B) zero-dependency finite state machine for JavaScript & TypeScript",
   "keywords": [
     "state machine",
@@ -9,9 +9,9 @@
     "typescript",
     "zero-dependency",
     "tiny",
-    "state management"
+    "state management","
   ],
-  "author": "Taha",
+  "author": "Taha Amin Ghafuri[T@G]",
   "license": "MIT",
   "repository": {
     "type": "git",

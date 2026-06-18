@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>tinyfsm — Tiny Finite State Machine for JavaScript</title>
-<meta name="description" content="A tiny (~600B) zero-dependency finite state machine for JavaScript & TypeScript. No boilerplate. No classes. Just states and events.">
+<title>@tahaghafuri/tinyfsm — Tiny Finite State Machine for JavaScript</title>
+<meta name="description" content="A tiny (~700B) zero-dependency finite state machine for JavaScript & TypeScript. No boilerplate. No classes. Just states and events.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -304,30 +304,70 @@
   }
   .api-table .desc { color: var(--muted); }
 
-  /* ── INSTALL ── */
-  .install-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1rem;
-  }
-  .install-card {
-    background: var(--surface);
+  /* ── INSTALL TABS ── */
+  .install-tabs {
     border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--surface);
   }
-  .install-card .lbl {
-    font-size: 0.72rem;
+  .tab-bar {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tab-bar::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    flex-shrink: 0;
+    padding: 0.6rem 1.2rem;
+    font-family: var(--mono);
+    font-size: 0.78rem;
     color: var(--muted);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 0.04em;
+    margin-bottom: -1px;
   }
-  .install-card code {
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--accent2); border-bottom-color: var(--accent); }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .install-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.1rem 1.25rem;
+  }
+  .install-row code {
     font-family: var(--mono);
     font-size: 0.85rem;
     color: var(--green);
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
+  .copy-btn {
+    flex-shrink: 0;
+    padding: 0.3rem 0.75rem;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--dim);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 0.04em;
+  }
+  .copy-btn:hover { border-color: var(--accent); color: var(--accent2); }
+  .copy-btn.copied { border-color: var(--green); color: var(--green); }
 
   /* ── FOOTER ── */
   footer {
@@ -348,7 +388,7 @@
 
 <nav>
   <div class="nav-logo">
-    tinyfsm <span>v1.0.0</span>
+    @tahaghafuri/tinyfsm <span id="pkg-version">v1.0.0</span>
   </div>
   <div class="nav-links">
     <a href="#install">Install</a>
@@ -363,7 +403,7 @@
   <div class="badge"><span class="dot"></span> 706 bytes minified · zero dependencies</div>
   <h1>Finite State Machines,<br><em>without the weight.</em></h1>
   <p class="hero-sub">
-    tinyfsm gives you predictable state logic in any JavaScript or TypeScript project.
+    @tahaghafuri/tinyfsm gives you predictable state logic in any JavaScript or TypeScript project.
     No classes. No decorators. No runtime overhead.
   </p>
   <div class="hero-actions">
@@ -407,22 +447,43 @@
     <span class="tag">INSTALL</span>
     Get started in seconds
   </div>
-  <div class="install-grid">
-    <div class="install-card">
-      <div class="lbl">npm</div>
-      <code>npm install tinyfsm</code>
+  <div class="install-tabs">
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('npm',this)">npm</button>
+      <button class="tab-btn" onclick="switchTab('pnpm',this)">pnpm</button>
+      <button class="tab-btn" onclick="switchTab('yarn',this)">yarn</button>
+      <button class="tab-btn" onclick="switchTab('jsdelivr',this)">jsDelivr</button>
+      <button class="tab-btn" onclick="switchTab('cdnjs',this)">cdnjs</button>
     </div>
-    <div class="install-card">
-      <div class="lbl">pnpm</div>
-      <code>pnpm add tinyfsm</code>
+    <div id="tab-npm" class="tab-panel active">
+      <div class="install-row">
+        <code>npm install @tahaghafuri/tinyfsm</code>
+        <button class="copy-btn" onclick="copyInstall(this)">copy</button>
+      </div>
     </div>
-    <div class="install-card">
-      <div class="lbl">CDN (jsDelivr)</div>
-      <code>https://cdn.jsdelivr.net/npm/tinyfsm/dist/tinyfsm.umd.min.js</code>
+    <div id="tab-pnpm" class="tab-panel">
+      <div class="install-row">
+        <code>pnpm add @tahaghafuri/tinyfsm</code>
+        <button class="copy-btn" onclick="copyInstall(this)">copy</button>
+      </div>
     </div>
-    <div class="install-card">
-      <div class="lbl">CDN (cdnjs)</div>
-      <code>https://cdnjs.cloudflare.com/ajax/libs/tinyfsm/1.0.0/tinyfsm.umd.min.js</code>
+    <div id="tab-yarn" class="tab-panel">
+      <div class="install-row">
+        <code>yarn add @tahaghafuri/tinyfsm</code>
+        <button class="copy-btn" onclick="copyInstall(this)">copy</button>
+      </div>
+    </div>
+    <div id="tab-jsdelivr" class="tab-panel">
+      <div class="install-row">
+        <code id="cdn-jsdelivr">https://cdn.jsdelivr.net/npm/@tahaghafuri/tinyfsm/dist/tinyfsm.umd.min.js</code>
+        <button class="copy-btn" onclick="copyInstall(this)">copy</button>
+      </div>
+    </div>
+    <div id="tab-cdnjs" class="tab-panel">
+      <div class="install-row">
+        <code id="cdn-cdnjs">https://cdnjs.cloudflare.com/ajax/libs/@tahaghafuri/tinyfsm/1.0.0/tinyfsm.umd.min.js</code>
+        <button class="copy-btn" onclick="copyInstall(this)">copy</button>
+      </div>
     </div>
   </div>
 </section>
@@ -433,7 +494,7 @@
     <span class="tag">USAGE</span>
     Fetch machine — the most common pattern
   </div>
-  <pre><span class="token-keyword">import</span> { <span class="token-fn">createMachine</span> } <span class="token-keyword">from</span> <span class="token-string">'tinyfsm'</span>;
+  <pre><span class="token-keyword">import</span> { <span class="token-fn">createMachine</span> } <span class="token-keyword">from</span> <span class="token-string">'@tahaghafuri/tinyfsm'</span>;
 
 <span class="token-keyword">const</span> fetcher = <span class="token-fn">createMachine</span>({
   initial: <span class="token-string">'idle'</span>,
@@ -531,12 +592,28 @@ door.<span class="token-fn">send</span>(<span class="token-string">'OPEN'</span>
 </section>
 
 <footer>
-  tinyfsm — MIT License ·
+  @tahaghafuri/tinyfsm — MIT License ·
   <a href="https://github.com/tahaghafuri/tinyfsm">GitHub</a> ·
-  <a href="https://www.npmjs.com/package/tinyfsm">npm</a>
+  <a href="https://www.npmjs.com/package/@tahaghafuri/tinyfsm">npm</a>
 </footer>
 
-<script type="module">
+<script>
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  function copyInstall(btn) {
+    const text = btn.previousElementSibling.textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = 'copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'copy'; btn.classList.remove('copied'); }, 1800);
+    });
+  }
+</script>
   // Live demo using the actual tinyfsm UMD bundle logic inline
   const descriptions = {
     red:    "Stop — waiting for green",
@@ -560,6 +637,20 @@ door.<span class="token-fn">send</span>(<span class="token-string">'OPEN'</span>
     document.getElementById("demo-event-log").textContent =
       `"${prev}" → "${current}"`;
   };
+</script>
+<script>
+  fetch('https://registry.npmjs.org/@tahaghafuri%2Ftinyfsm/latest')
+    .then(r => r.json())
+    .then(d => {
+      if (!d.version) return;
+      const v = d.version;
+      document.getElementById('pkg-version').textContent = 'v' + v;
+      document.getElementById('cdn-jsdelivr').textContent =
+        `https://cdn.jsdelivr.net/npm/@tahaghafuri/tinyfsm@${v}/dist/tinyfsm.umd.min.js`;
+      document.getElementById('cdn-cdnjs').textContent =
+        `https://cdnjs.cloudflare.com/ajax/libs/@tahaghafuri/tinyfsm/${v}/tinyfsm.umd.min.js`;
+    })
+    .catch(() => {});
 </script>
 </body>
 </html>
