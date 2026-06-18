@@ -1,0 +1,43 @@
+{
+  "name": "tinyfsm",
+  "version": "1.0.0",
+  "description": "A tiny (~600B) zero-dependency finite state machine for JavaScript & TypeScript",
+  "keywords": [
+    "state machine",
+    "fsm",
+    "finite state machine",
+    "typescript",
+    "zero-dependency",
+    "tiny",
+    "state management"
+  ],
+  "author": "Taha",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tahaghafuri/tinyfsm.git"
+  },
+  "homepage": "https://tinyfsm.js.org",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node test.mjs",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "type": "module"
+}
